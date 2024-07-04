@@ -33,6 +33,7 @@ public class IngressController {
                 if (ingress.getMetadata().getAnnotations() == null) {
                     ingress.getMetadata().setAnnotations(new HashMap<>());
                 }
+                //会覆盖之前设置的注解值。这意味着你提供的IP白名单不会累加，而是直接替换之前的值。
                 ingress.getMetadata().getAnnotations().put("nginx.ingress.kubernetes.io/whitelist-source-range", ipCidr);
 
                 // 应用更新后的 Ingress
